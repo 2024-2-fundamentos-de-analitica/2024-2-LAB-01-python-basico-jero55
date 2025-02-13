@@ -26,3 +26,26 @@ def pregunta_06():
      ('jjj', 5, 17)]
 
     """
+    with open("files/input/data.csv", 'r') as file:
+        data = file.readlines()
+    maximo = {}
+    minimo = {}
+    for line in data:
+        line = line.strip().split("	")
+        line = line[4].split(",")
+        for elem in line:
+            clave,valor = elem.split(":")
+            if clave in maximo:
+                if int(valor) > maximo[clave]:
+                    maximo[clave] = int(valor)
+            else:
+                maximo[clave] = int(valor)
+            if clave in minimo:
+                if int(valor) < minimo[clave]:
+                    minimo[clave] = int(valor)
+            else:
+                minimo[clave] = int(valor)
+    
+    salida  = [(k, minimo[k], maximo[k]) for k in minimo.keys()]
+    salida.sort()
+    return salida

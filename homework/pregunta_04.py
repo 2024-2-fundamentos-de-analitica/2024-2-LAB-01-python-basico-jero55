@@ -26,3 +26,20 @@ def pregunta_04():
      ('12', 3)]
 
     """
+    with open("files/input/data.csv","r") as file:
+        data = file.readlines()
+    
+    contador = {}
+    for line in data:
+        line = line.strip().split("	")
+        line = line[2].split("-")
+        
+        if line[1] in contador:
+            contador[line[1]] += 1
+        else:
+            contador[line[1]] = 1
+    
+    salida = [(k, v) for k, v in contador.items()]
+    salida.sort()
+    print(salida)
+    return salida

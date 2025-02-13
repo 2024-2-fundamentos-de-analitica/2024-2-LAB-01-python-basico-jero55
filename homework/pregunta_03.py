@@ -15,3 +15,22 @@ def pregunta_03():
     [('A', 53), ('B', 36), ('C', 27), ('D', 31), ('E', 67)]
 
     """
+
+    with open("files/input/data.csv", mode='r') as file:
+        data = file.readlines()
+
+    suma = {}
+
+    for line in data:
+        line = line.strip().split("	")
+        
+        if line[0] in suma:
+            suma[line[0]] += int(line[1])
+        else:
+            suma[line[0]] = int(line[1])
+
+    salida = [(k, v) for k, v in suma.items()]
+
+    salida.sort()
+    
+    return salida        

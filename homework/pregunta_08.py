@@ -27,3 +27,18 @@ def pregunta_08():
      (9, ['A', 'B', 'C', 'E'])]
 
     """
+    with open("files/input/data.csv", 'r') as file:
+        data = file.readlines()
+    
+    dic = {}
+    for line in data:
+        line = line.strip().split("	")
+
+        if line[1] in dic:
+            dic[line[1]].add(line[0])
+        else:
+            dic[line[1]] = {line[0]}
+    
+    salida = [(int(k),sorted(s))for k,s in dic.items()]
+    salida.sort()
+    return salida

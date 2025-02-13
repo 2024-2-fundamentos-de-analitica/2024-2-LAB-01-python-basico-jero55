@@ -15,3 +15,19 @@ def pregunta_12():
     {'A': 177, 'B': 187, 'C': 114, 'D': 136, 'E': 324}
 
     """
+
+    with open("files/input/data.csv", 'r') as file:
+        data = file.readlines()
+    
+    dic = {}
+    for line in data:
+        line = line.strip().split("	")
+        col_5 = line[4].split(",")
+        valor = sum([int(x.split(":")[1]) for x in col_5])
+        if line[0] in dic:
+            dic[line[0]] += valor
+        else:
+            dic[line[0]] = valor
+    
+    salida  = dict(sorted(dic.items()))
+    return salida

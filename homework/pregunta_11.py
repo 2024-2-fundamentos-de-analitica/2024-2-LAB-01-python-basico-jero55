@@ -16,3 +16,20 @@ def pregunta_11():
 
 
     """
+
+    with open("files/input/data.csv", 'r') as file:
+        data = file.readlines()
+    
+    dic = {}
+    for line in data:
+        line = line.strip().split("	")
+        letters = line[3].split(",")
+        for letter in letters:
+            if letter in dic:
+                dic[letter] += int(line[1])
+            else:
+                dic[letter] = int(line[1])
+
+    salida  = dict(sorted(dic.items()))
+
+    return salida
